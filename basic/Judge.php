@@ -97,23 +97,23 @@ if($money >= $price && $price < $money){
 
 echo "<ul>";
 echo "<li> && 邏輯運算子比較</li>";
-echo "<li>".(true and true)."</li>";   //條件成立，輸出結果→1
-echo "<li>".(true and false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
-echo "<li>".(true && true)."</li>";    //條件成立，輸出結果→1
+echo "<li> True and True = ".(true and true)."</li>";   //條件成立，輸出結果→1
+echo "<li> True and False = ".(true and false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
+echo "<li> True && True = ".(true && true)."</li>";    //條件成立，輸出結果→1
 echo "<br/>";
 
 echo "<li> || 邏輯運算子比較</li>";
-echo "<li>".(true or true)."</li>";    //條件成立，輸出結果→1
-echo "<li>".(true or false)."</li>";   //條件成立，輸出結果→1
-echo "<li>".(false or false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
-echo "<li>".(false || false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
+echo "<li> True or True = ".(true or true)."</li>";    //條件成立，輸出結果→1
+echo "<li> True or False = ".(true or false)."</li>";   //條件成立，輸出結果→1
+echo "<li> False or False = ".(false or false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
+echo "<li> False || False = ".(false || false)."</li>";  //條件不成立，輸出結果→  (什麼都沒有)
 echo "<br/>";
 
 echo "<li> xor 邏輯運算子比較</li>";
-echo "<li>".(true xor true)."</li>";   //條件不成立，輸出結果→  (什麼都沒有)
-echo "<li>".(true xor false)."</li>";  //條件成立，輸出結果→1
-echo "<li>".(false xor true)."</li>";  //條件成立，輸出結果→1
-echo "<li>".(false xor false)."</li>"; //條件不成立，輸出結果→  (什麼都沒有)
+echo "<li> True xor True = ".(true xor true)."</li>";   //條件不成立，輸出結果→  (什麼都沒有)
+echo "<li> True xor False = ".(true xor false)."</li>";  //條件成立，輸出結果→1
+echo "<li> False xor True = ".(false xor true)."</li>";  //條件成立，輸出結果→1
+echo "<li> False xor False = ".(false xor false)."</li>"; //條件不成立，輸出結果→  (什麼都沒有)
 echo "<br/>";
 
 ?>
