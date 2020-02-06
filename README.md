@@ -70,6 +70,10 @@ Hi();
 ```var_dump($title);```  
 <hr>  
 
+* [PHP 表單處理](https://www.w3school.com.cn/php/php_forms.asp)    
+* [PHP MySQL連接](https://www.w3school.com.cn/php/php_mysql_connect.asp)  
+<hr>   
+
 #### 實用練習範例
 [Array.php](https://github.com/Yeh-Hsiu-Hsiang/PHP/blob/master/basic/Array.php)  
 [for 跟 foreach 的用法](https://github.com/Yeh-Hsiu-Hsiang/PHP/blob/master/basic/For.php)  
