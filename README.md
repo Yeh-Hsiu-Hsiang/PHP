@@ -15,13 +15,13 @@
 
 * 輸出陣列  
 ```print_r``` 可以列印出複雜型別變數的值(如陣列,物件)    
-#### Ex:
-```  
-$Name = array('Berry'=>'10', 'Orange'=>'6', 'Elle'=>'3', 'Ice'=>'7', 'Apple'=>'9', 'Kitty'=> '2');
-```
-```
-print_r($Name);
-```
+  #### Ex:
+  ```  
+  $Name = array('Berry'=>'10', 'Orange'=>'6', 'Elle'=>'3', 'Ice'=>'7', 'Apple'=>'9', 'Kitty'=> '2');
+  ```
+  ```
+  print_r($Name);
+  ```
 <hr>  
 
 * 宣告變數  
@@ -29,24 +29,25 @@ print_r($Name);
 ```
 $變數名稱
 ```  
-#### Ex:  
+  #### Ex:  
 
-```
-$title = "Name";
-$number = 1;
-```  
+  ```
+  $title = "Name";
+  $number = 1;
+  ```  
 <hr>
 
 * 設定函數  
 ```  function(輸入值){}```  
-```
-function Hi(){
-  print "Hello, World";
-}
-```
-```
-Hi();
-```
+  #### Ex:  
+  ```
+  function Hi(){
+    print "Hello, World";
+  }
+  ```
+  ```
+  Hi();
+  ```
 <hr>
 
 * 換行  
@@ -71,8 +72,8 @@ Hi();
 
 * 印出變數的相關資訊(ex:變數種類or值)  
 ```var_dump(要判斷的變數)```  
-#### Ex:
-```var_dump($title);```  
+  #### Ex:
+  ```var_dump($title);```  
 <hr>  
 
 #### 實用練習範例
