@@ -23,7 +23,9 @@ $Name = array('Berry'=>'10', 'Orange'=>'6', 'Elle'=>'3', 'Ice'=>'7', 'Apple'=>'9
 print_r($Name);
 ```
 <hr>  
+
 * 宣告變數  
+
 ```
 $變數名稱
 ```  
