@@ -74,6 +74,32 @@ $變數名稱
   ```var_dump($title);```  
 <hr>  
 
+ #### GET vs. POST  
+ GET 和 POST 都創建陣列（例如，array( key => value, key2 => value2, key3 => value3, ...)）。此陣列包含鍵 / 值對，其中的鍵是表單控制項的名稱，而值是來自使用者的輸入資料。  
+ * GET 和 POST 被視作 $_GET 和 $_POST。  
+ * 它們是全域變數，能夠從任何函數、類或檔訪問它們。  
+
+ * $_GET 是通過 URL 參數傳遞到當前腳本的變數陣列。  
+ * $_POST 是通過 HTTP POST 傳遞到當前腳本的變數陣列。
+
+ #### GET的使用時機  
+ * 通過 GET 方法從表單發送的資訊對任何人都可以看見
+ （所有變數名和值都會顯示在 URL 中）。  
+ * GET 對所發送資訊的數量限制在大約 2000 個字元。  
+ * 由於變數顯示在 URL 中，把頁面添加到書簽中也更為方便。
+ * GET 可用於發送非敏感的資料。    
+ ###### **絕不能使用 GET 來發送密碼或其他敏感資訊**  
+
+ #### POST 的使用時機  
+ * 通過 POST 方法從表單發送的資訊對外是看不見的
+ （所有名稱 / 值會被嵌入 HTTP 請求的主體中）。
+ * 對所發送資訊的數量無限制。
+ * POST 支持高階功能，比如在向伺服器上傳檔時進行 multi-part 二進位輸入。
+ * 由於變數未顯示在 URL 中，也就無法將頁面添加到書簽。
+ ###### **開發者偏愛 POST 來發送表單數據**
+
+<hr>
+
 * [PHP 表單處理](https://www.w3school.com.cn/php/php_forms.asp)    
 * [PHP MySQL連接](https://www.w3school.com.cn/php/php_mysql_connect.asp)  
 <hr>   
