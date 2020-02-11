@@ -58,7 +58,7 @@ echo "<br>";
 echo "Ex:";
 ?>
 
- <html>
+<html>
 <body>
 
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
@@ -91,7 +91,6 @@ echo "<br>";
 ?>
 
 <?php
-// 定義變量並設置為空值
 $name = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -299,5 +298,6 @@ echo "<br>";
     <?php if (isset($gender) && $gender=="male") echo "checked";?>
     value="male">Male
     <span class="error">* <?php echo $genderErr;?></span>
+    <br><br>
     <input type="submit" name="submit" value="Submit">
  </form>
