@@ -28,9 +28,7 @@
 <hr>  
 
 * 宣告變數  
-```
-$變數名稱
-```  
+```$變數名稱```  
 
 #### Ex:  
 
@@ -59,7 +57,12 @@ $變數名稱
 <hr>
 
 * 換行  
-```echo "<br>";```  
+```php
+<?php
+echo "<br>";
+?>
+```
+
 <hr>
 
 * 清單  
@@ -78,7 +81,12 @@ $變數名稱
 <hr>
 
 * 分隔線  
-```echo "<hr/>";```  
+```php
+<?php
+echo "<hr/>";
+?>
+```  
+
 <hr>
 
 * 印出變數的相關資訊(ex:變數種類or值)  
@@ -86,16 +94,20 @@ $變數名稱
 
   #### Ex:
 
-  ```var_dump($title);```  
+  ```php
+  <?php
+  var_dump($title);
+  ?>
+  ```  
 <hr>  
 
 > **進階知識 & 語法**
 
  #### GET vs. POST  
-```echo $_GET["name"];```  
-```echo $_POST["name"];```  
-```<form action="welcome.php" method="get">```  
-```<form action="welcome.php" method="post">```
+```$_GET["name"];```   
+```$_POST["name"];```    
+```<form action="fileName" method="get">```  使用 GET 方法傳遞值  
+```<form action="fileName" method="post">```  使用 POST 方法傳遞值  
 
 #### Ex:
 
@@ -147,13 +159,13 @@ if ($_POST["recipe"] == null){
 
  GET 和 POST 都創建陣列（例如，array( key => value, key2 => value2, key3 => value3, ...)）。此陣列包含鍵 / 值對，其中的鍵是表單控制項的名稱，而值是來自使用者的輸入資料。  
  * GET 和 POST 被視作 $_GET 和 $_POST。  
- * 它們是全域變數，能夠從任何函數、類或檔訪問它們。  
+ * 它們是**全域變數**，能夠從任何函數、類或檔訪問它們。  
 
  * $_GET 是通過 URL 參數傳遞到當前腳本的變數陣列。  
  * $_POST 是通過 HTTP POST 傳遞到當前腳本的變數陣列。
 
 #### GET的使用時機  
- * 通過 GET 方法從表單發送的資訊對任何人都可以看見
+ * 通過 GET 方法從表單發送的資訊對**任何人都可以看見**
  （所有變數名和值都會顯示在 URL 中）。  
  * GET 對所發送資訊的數量限制在大約 2000 個字元。  
  * 由於變數顯示在 URL 中，把頁面添加到書簽中也更為方便。
@@ -161,7 +173,7 @@ if ($_POST["recipe"] == null){
  ###### **絕不能使用 GET 來發送密碼或其他敏感資訊**  
 
 #### POST 的使用時機  
- * 通過 POST 方法從表單發送的資訊對外是看不見的
+ * 通過 POST 方法從表單發送的資訊**對外是看不見的**
  （所有名稱 / 值會被嵌入 HTTP 請求的主體中）。
  * 對所發送資訊的數量無限制。
  * POST 支持高階功能，比如在向伺服器上傳檔時進行 multi-part 二進位輸入。
@@ -179,24 +191,83 @@ if ($_POST["recipe"] == null){
 
 可以將 PHP 檔的內容插入另一個 PHP 檔（在伺服器執行它之前）。  
 include 和 require 語句是相同的，除了錯誤處理方面：
-* require 會生成致命錯誤（E_COMPILE_ERROR）並停止程式。
-* include 只生成警告（E_WARNING），並且程式會繼續。
+* require 會生成**致命錯誤**（E_COMPILE_ERROR）並**停止程式**。
+* include 只生成**警告**（E_WARNING），並且**程式會繼續**。
 
 #### include 的使用時機  
-當檔案不是必需的，且應用程式在檔案未找到時還能繼續運作時。  
+當**檔案不是必需的**，且應用程式在檔案未找到時還能繼續運作時。  
 #### require 的使用時機  
-當檔案被應用程式請求時。也就是說該檔案是必需品，沒有他整個程式會停止運作。
+當檔案被應用程式請求時。也就是說該**檔案是必需品**，沒有他整個程式會停止運作。
 
 <hr>
 
-#### readfile() 讀取文件。  
+#### 文件 readfile()   
 #### Ex:
-
 ```php
 <?php
 echo readfile("webdictionary.txt");
 ?>
 ```
+
+<hr>
+
+#### 開啟及讀取文件
+* fopen()  開啟文件
+* fread() - 讀取文件  
+* fclose() - 關閉文件
+* fgets() - 讀取單行文件
+#### Ex:
+```php
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+echo fread($myfile, filesize("webdictionary.txt"));
+echo fgets($myfile);
+fclose($myfile);
+?>
+```
+
+模式  |  描述  
+--:-- | --:--
+r | read，從文件起始開始。 |    
+w | write，從文件起始開始。 |
+a | write，文件中的現有數據會被保留。從文件結尾開始。如果文件不存在的話，會創建新的文件。 |
+x | 創新文件，write。如果文件已存在，返回 FALSE 和錯誤。 |
+r+ | read & write，從文件起始開始。 |
+w+ | read & write，能夠刪除或新建文件。從文件起始開始。 |
+a+ | read & write，文件中的已有數據會被保留。從文件結尾開始。如果文件不存在的話，會創建新的文件。 |
+x+ | 創新文件，read & write。如果文件已存在，返回 FALSE 和錯誤。 |
+
+#### 檢查文件是否全部讀取完畢 - End-Of-File 。
+```feof() ```  
+* 檢查文件是否 "end-of-file" (EOF)。
+* 對於**未知長度**的文件非常有用。
+#### Ex:
+```php
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+while(!feof($myfile)) {
+  echo fgets($myfile) . "<br>";
+}
+fclose($myfile);
+?>
+```
+
+#### 讀取單字符
+```fgetc()```
+* 用於從文件中讀取單個字符。  
+
+#### Ex:
+```php
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+while(!feof($myfile)) {
+  echo fgetc($myfile);
+  echo "<br>";
+}
+fclose($myfile);
+?>
+```
+
 
 <hr>
 
