@@ -7,20 +7,23 @@
 ```print``` 只能列印出簡單型別變數的值(如int,string)   
 
   #### Ex:
-  ```  
+  ```php  
+  <?php
   echo "Hello, World";
   print "Hello, World";
+  ?>
   ```
 <hr>
 
 * 輸出陣列  
 ```print_r``` 可以列印出複雜型別變數的值(如陣列,物件)    
   #### Ex:
-  ```  
+  ```php  
+  <?php
   $Name = array('Berry'=>'10', 'Orange'=>'6', 'Elle'=>'3', 'Ice'=>'7', 'Apple'=>'9', 'Kitty'=> '2');
-  ```
-  ```
+
   print_r($Name);
+  ?>
   ```
 <hr>  
 
@@ -28,23 +31,30 @@
 ```
 $變數名稱
 ```  
+
 #### Ex:  
-  ```
+
+```php
+<?php
   $title = "Name";
   $number = 1;
-  ```  
+?>
+```  
 <hr>
 
 * 設定函數  
 ```  function(輸入值){}```  
+
   #### Ex:  
-  ```
+
+  ```php
+  <?php
   function Hi(){
     print "Hello, World";
   }
-  ```
-  ```
+
   Hi();
+  ?>
   ```
 <hr>
 
@@ -55,13 +65,16 @@ $變數名稱
 * 清單  
 > ```"<ul>"裡面包"<li>" ```  
 
-#### Ex:  
-  ```  
+#### Ex:
+
+```  php
+<?php
   echo "<ul>";
     echo "<li> </li>";
     echo "<li> </li>";
   echo "</ul>";
-  ```  
+?>
+```  
 <hr>
 
 * 分隔線  
@@ -70,11 +83,68 @@ $變數名稱
 
 * 印出變數的相關資訊(ex:變數種類or值)  
 ```var_dump(要判斷的變數)```  
+
   #### Ex:
+
   ```var_dump($title);```  
 <hr>  
 
+> **進階知識 & 語法**
+
  #### GET vs. POST  
+```echo $_GET["name"];```  
+```echo $_POST["name"];```  
+```<form action="welcome.php" method="get">```  
+```<form action="welcome.php" method="post">```
+
+#### Ex:
+
+* PHP
+```php
+<?php
+if ($_POST["recipe"] == null){
+  //使用者甚麼都沒輸入
+  echo "<h1>請到下一頁Form搜尋</h1>";
+}else{
+  echo "<h1>您搜尋的是：" . $_POST["recipe"] . "</h1>";
+
+  if ($_POST["recipe"] == "炒麵"){
+    echo "標題：阿嬤的炒麵<br/>";
+    echo "步驟：<br/>";
+    echo "1： 找一個阿嬤<br/>";
+    echo "2： 請她幫你煮<br/>";
+  }else{
+    echo "您的要求太過於複雜<br/>";
+    echo "叫外送可能會比較實際一點<br/>";
+  }
+}
+?>
+```
+
+* HTML :
+```html
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <h1>HtmlForm</h1>
+
+    <form method="post" action="./getHTML.php">
+      <!--當使用者按下送出表單之後所傳送到的頁面。-->
+      <input type="text" name="recipe" placeholder="請輸入食譜名稱" />
+      <!-- 參數名稱必須和「getHTML」中的 $_POST ["yourName"]  陣列裡的值完全一致才會讀取成功。
+            placeholder = "" => 輸入欄位提示訊息 -->
+      <button type="submit">
+        送出
+      </button>
+    </form>
+  </body>
+</html>
+```
+
  GET 和 POST 都創建陣列（例如，array( key => value, key2 => value2, key3 => value3, ...)）。此陣列包含鍵 / 值對，其中的鍵是表單控制項的名稱，而值是來自使用者的輸入資料。  
  * GET 和 POST 被視作 $_GET 和 $_POST。  
  * 它們是全域變數，能夠從任何函數、類或檔訪問它們。  
@@ -82,7 +152,7 @@ $變數名稱
  * $_GET 是通過 URL 參數傳遞到當前腳本的變數陣列。  
  * $_POST 是通過 HTTP POST 傳遞到當前腳本的變數陣列。
 
- #### GET的使用時機  
+#### GET的使用時機  
  * 通過 GET 方法從表單發送的資訊對任何人都可以看見
  （所有變數名和值都會顯示在 URL 中）。  
  * GET 對所發送資訊的數量限制在大約 2000 個字元。  
@@ -90,13 +160,43 @@ $變數名稱
  * GET 可用於發送非敏感的資料。    
  ###### **絕不能使用 GET 來發送密碼或其他敏感資訊**  
 
- #### POST 的使用時機  
+#### POST 的使用時機  
  * 通過 POST 方法從表單發送的資訊對外是看不見的
  （所有名稱 / 值會被嵌入 HTTP 請求的主體中）。
  * 對所發送資訊的數量無限制。
  * POST 支持高階功能，比如在向伺服器上傳檔時進行 multi-part 二進位輸入。
  * 由於變數未顯示在 URL 中，也就無法將頁面添加到書簽。
  ###### **開發者偏愛 POST 來發送表單數據**
+
+<hr>
+
+### include vs. require
+* include  
+```echo include 'filename';```  
+
+* require  
+```echo require 'filename';```
+
+可以將 PHP 檔的內容插入另一個 PHP 檔（在伺服器執行它之前）。  
+include 和 require 語句是相同的，除了錯誤處理方面：
+* require 會生成致命錯誤（E_COMPILE_ERROR）並停止程式。
+* include 只生成警告（E_WARNING），並且程式會繼續。
+
+#### include 的使用時機  
+當檔案不是必需的，且應用程式在檔案未找到時還能繼續運作時。  
+#### require 的使用時機  
+當檔案被應用程式請求時。也就是說該檔案是必需品，沒有他整個程式會停止運作。
+
+<hr>
+
+#### readfile() 讀取文件。  
+#### Ex:
+
+```php
+<?php
+echo readfile("webdictionary.txt");
+?>
+```
 
 <hr>
 
