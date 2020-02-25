@@ -212,22 +212,48 @@ echo readfile("webdictionary.txt");
 <hr>
 
 #### 開啟及讀取文件
-* fopen()  開啟文件
-* fread() - 讀取文件  
-* fclose() - 關閉文件
-* fgets() - 讀取單行文件
+* ```fopen()```  開啟文件(如果文件不存在會自動新增)
+* ```fread()``` - 讀取文件  
+* ```fclose()``` - 關閉文件
+* ```fgets()``` - 讀取單行文件
+* ```fgetc()``` - 用於從文件中讀取單個字符
 #### Ex:
+開啟文件並從文件中讀取全部資料：
 ```php
 <?php
 $myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+while(!feof($myfile)) {
 echo fread($myfile, filesize("webdictionary.txt"));
-echo fgets($myfile);
+}
+fclose($myfile);
+?>
+```
+開啟文件並從文件中讀取單行文件：
+```php
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+while(!feof($myfile)) {
+  echo fgets($myfile);
+  echo "<br>";
+}
+fclose($myfile);
+?>
+```
+開啟文件並從文件中讀取單個字母：
+```php
+<?php
+$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+while(!feof($myfile)) {
+  echo fgetc($myfile);
+  echo "<br>";
+}
 fclose($myfile);
 ?>
 ```
 
-| 模式 | 描述 | 
-| ----- | ----- | 
+
+| 模式 | 描述 |
+| ----- | ----- |
 | r | read，從文件起始開始。 |       
 | w | write，從文件起始開始。 |  
 | a | write，文件中的現有數據會被保留。從文件結尾開始。如果文件不存在的話，會創建新的文件。 |  
@@ -252,22 +278,26 @@ fclose($myfile);
 ?>
 ```
 
-#### 讀取單字符
-```fgetc()```
-* 用於從文件中讀取單個字符。  
+* 新增文件 -> 寫入 -> 讀取 -> 關閉
 
-#### Ex:
 ```php
 <?php
-$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
-while(!feof($myfile)) {
-  echo fgetc($myfile);
-  echo "<br>";
-}
+$myfile = fopen("testfile.txt", "w") or die("Unable to open file!");
+$txt = "Hello, World\n";
+fwrite($myfile, $txt);
+$txt = "Date in 2020\n";
+fwrite($myfile, $txt);
 fclose($myfile);
+
+$readfile = fopen("testfile.txt", "r") or die("Unable to open file!");
+while(!feof($readfile)) {
+  echo fgets($readfile) . "<br>";
+}
+fclose($readfile);
 ?>
 ```
 
+<hr>
 
 <hr>
 
